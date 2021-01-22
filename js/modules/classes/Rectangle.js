@@ -12,7 +12,7 @@ class Rectangle {
     }
     draw = function(context) {
         context.fillStyle = 'grey';
-        context.fillRect(rectW * j, rectH * i, rectW, rectH);
+        context.fillRect(this.x, this.y, this.width, this.height);
     }
     open = function(context) {
         console.log('HI');
