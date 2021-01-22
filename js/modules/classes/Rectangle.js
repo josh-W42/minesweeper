@@ -11,8 +11,13 @@ class Rectangle {
         this.height = height;
     }
     draw = function(context) {
+        // First we have to make the actual rectangle
         context.fillStyle = 'grey';
         context.fillRect(this.x, this.y, this.width, this.height);
+
+        // Then we have to draw the border
+        context.fillStyle = "white";
+        context.fillRect(this.x + 1, this.y + 1, this.width - 2, this.height - 2);
     }
     open = function(context) {
         console.log('HI');
