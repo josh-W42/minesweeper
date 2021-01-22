@@ -5,37 +5,24 @@
 
 import { Rectangle } from './classes/Rectangle.js';
 
-let constants = new Map();
-const EASY_DIFFICULTY_ID = 1;
-const MEDIUM_DIFFICULTY_ID = 2;
-const HARD_DIFFICULTY_ID = 3;
-
-constants.set(EASY_DIFFICULTY_ID, {
-    n: 10,
-    width: 50,
-    height: 50,
-});
-constants.set(MEDIUM_DIFFICULTY_ID, {
-    n: 'TODO',
-    width: 'TODO',
-    height: 'TODO',
-});
-constants.set(HARD_DIFFICULTY_ID, {
-    n: "TODO",
-    width: "TODO",
-    height: "TODO",
-})
-
+let data = null;
+fetch('../data/data.json')
+    .then(response => response.json())
+    .catch(error => console.log('Error occured in data retrival'))
+    .then(json => data = json)
+    .catch(error => console.log('Error occured in data assignment'));
 
 const setupCanvas = id => {
-    let canvas = document.querySelector('#canvas');
-    canvas.classList.remove('hidden');
-    if (canvas.getContext) {
-        let ctx = canvas.getContext("2d");
+    const canvas = document.querySelector('#canvas');
+    const difficulty = data.difficulty.filter(difficulty => difficulty.id === id)[0]; // Expecting id.
 
-        let n = constants.get(id).n;
-        let rectW = constants.get(id).width;
-        let rectH = constants.get(id).height;
+    canvas.classList.remove('hidden');
+    
+    if (canvas.getContext) 
+        let ctx = canvas.getContext("2d");
+        const n = difficulty.blocksPerRow;
+        const rectW = difficulty.blockWidth;
+        const rectH = difficulty.blockHeight;
 
         for (let i = 0; i < n; i++) {
             for (let j = 0; j < n; j++) {

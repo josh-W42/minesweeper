@@ -1,0 +1,40 @@
+{
+    "difficulty": [
+        {
+            "id": 1,
+            "name": "easy",
+            "blocksPerRow": 10,
+            "blockWidth": 50,
+            "blockHeight": 50,
+            "canvasWidth": 500,
+            "canvasHeight": 500
+        },
+        {
+            "id": 2,
+            "name": "Medium",
+            "blocksPerRow": "TODO",
+            "blockWidth": "TODO",
+            "blockHeight": "TODO",
+            "canvasWidth": "TODO",
+            "canvasHeight": "TODO"
+        },
+        {
+            "id": 3,
+            "name": "Hard",
+            "blocksPerRow": "TODO",
+            "blockWidth": "TODO",
+            "blockHeight": "TODO",
+            "canvasWidth": "TODO",
+            "canvasHeight": "TODO"
+        },
+        {
+            "id": 4,
+            "name": "CUSTOM",
+            "blocksPerRow": "TODO",
+            "blockWidth": "TODO",
+            "blockHeight": "TODO",
+            "canvasWidth": "TODO",
+            "canvasHeight": "TODO"
+        }
+    ]
+}

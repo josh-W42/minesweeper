@@ -6,6 +6,7 @@ const main = () => {
     let selectedDifficulty = null;
     document.querySelectorAll('#starterSection .difficultyBtn').forEach(el => {
         el.addEventListener('click', e => {
+            // Get the difficulty selected.
             selectedDifficulty = Number(e.target.dataset.difficulty);
             e.target.classList.toggle('active');
 
