@@ -13,8 +13,8 @@
             "id": 2,
             "name": "Medium",
             "blocksPerRow": "TODO",
-            "blockWidth": "TODO",
-            "blockHeight": "TODO",
+            "blockWidth": 50,
+            "blockHeight": 50,
             "canvasWidth": "TODO",
             "canvasHeight": "TODO"
         },
@@ -22,8 +22,8 @@
             "id": 3,
             "name": "Hard",
             "blocksPerRow": "TODO",
-            "blockWidth": "TODO",
-            "blockHeight": "TODO",
+            "blockWidth": 50,
+            "blockHeight": 50,
             "canvasWidth": "TODO",
             "canvasHeight": "TODO"
         },

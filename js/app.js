@@ -22,5 +22,10 @@ const main = () => {
     });
 }
 
+/* 
+    Implement local saves later
+    const hasOldGameSave = () => {}
+*/
+
 
 main();

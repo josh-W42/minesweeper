@@ -13,12 +13,14 @@ fetch('../data/data.json')
     .catch(error => console.log('Error occured in data assignment'));
 
 const setupCanvas = id => {
-    const canvas = document.querySelector('#canvas');
-    const difficulty = data.difficulty.filter(difficulty => difficulty.id === id)[0]; // Expecting id.
-
+    let canvas = document.querySelector('#canvas');
+    const difficulty = data.difficulty.filter(difficulty => difficulty.id === id)[0]; // Expecting one id.
+    
+    canvas.width = difficulty.canvasWidth;
+    canvas.height = difficulty.canvasHeight;
     canvas.classList.remove('hidden');
     
-    if (canvas.getContext) 
+    if (canvas.getContext) {
         let ctx = canvas.getContext("2d");
         const n = difficulty.blocksPerRow;
         const rectW = difficulty.blockWidth;
