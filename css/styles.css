@@ -1,8 +1,16 @@
 main {
-    justify-content: center;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.active {
+    border: 5px solid black;
+
 }
 
 canvas {
     border: 1px solid black;
-
 }

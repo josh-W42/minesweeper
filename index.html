@@ -9,9 +9,26 @@
 </head>
 <body>
     <main>
-        <canvas id="canvas" width="500" height="500">
-            Oh no! Your browser doesn't support canvas!
+        <section id='starterSection'>
+            <h1>Minesweeper!</h1>
+            <p>Select Difficulty:</p> 
+            <button class='difficultyBtn' data-difficulty="1">Easy</button>
+            <button class='difficultyBtn' data-difficulty="2">Medium</button>
+            <button class='difficultyBtn' data-difficulty="3">Hard</button>
+            <!-- <button data-difficulty="4">Custom</button> Later for more complexity -->
+            <br/><br/>
+            <button class='playBtn' disabled>Play</button>
+        </section>
+        <canvas id="canvas" class='hidden' width="500" height="500">
+            Oh no! Your browser doesn't support canvas! We can't run the game!
         </canvas>
+        <section id='gameOverSection' class="hidden">
+            <h2>Game Over</h2>
+            <span>Time: </span>
+            <span>Best Time: </span>
+            <!-- For the best time implement localstorage -->
+            <button>Play Again?</button>
+        </section>
     </main>
 </body>
 </html>

@@ -2,12 +2,23 @@
 
 import { startGame } from "./modules/Engine.js"
 
-const EASY_DIFFICULTY_ID = 1;
-const MEDIUM_DIFFICULTY_ID = 2;
-const HARD_DIFFICULTY_ID = 3;
-
 const main = () => {
-    startGame(EASY_DIFFICULTY_ID);
+    let selectedDifficulty = null;
+    document.querySelectorAll('#starterSection .difficultyBtn').forEach(el => {
+        el.addEventListener('click', e => {
+            selectedDifficulty = Number(e.target.dataset.difficulty);
+            e.target.classList.toggle('active');
+
+            // Unlock play button.
+            document.querySelector('.playBtn').disabled = false;
+        })
+    });
+    document.querySelector('#starterSection .playBtn').addEventListener('click', e => {
+        if (selectedDifficulty !== null) {
+            startGame(selectedDifficulty);
+            document.querySelector('#starterSection').classList.toggle('hidden');
+        }
+    });
 }
 
 
