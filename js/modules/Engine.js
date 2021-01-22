@@ -1,10 +1,23 @@
 /* 
-    The Engine starts and stops the game if the win conditions are met.
+    The Engine holds game data and the logic
+    that starts and stops the game.
 */
 import { setupCanvas } from "./canvas.js";
 
-const startGame = () => {
-    setupCanvas(10);
+const startGame = id => {
+    setupCanvas(id);
 }
 
-export { startGame };
+const endGame = () => {
+    console.log('Game Over');
+}
+
+const playerWin = () => {
+    console.log('Win');
+}
+
+const playerLost = () => {
+    console.log('Lost');
+}
+
+export { startGame, endGame };

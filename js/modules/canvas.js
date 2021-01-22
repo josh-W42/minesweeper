@@ -5,18 +5,44 @@
 
 import { Rectangle } from './classes/Rectangle.js';
 
-const setupCanvas = n => {
+let constants = new Map();
+const EASY_DIFFICULTY_ID = 1;
+const MEDIUM_DIFFICULTY_ID = 2;
+const HARD_DIFFICULTY_ID = 3;
+
+constants.set(EASY_DIFFICULTY_ID, {
+    n: 10,
+    width: 50,
+    height: 50,
+});
+constants.set(MEDIUM_DIFFICULTY_ID, {
+    n: 'TODO',
+    width: 'TODO',
+    height: 'TODO',
+});
+constants.set(HARD_DIFFICULTY_ID, {
+    n: "TODO",
+    width: "TODO",
+    height: "TODO",
+})
+
+
+const setupCanvas = id => {
     let canvas = document.querySelector('#canvas');
+    canvas.classList.remove('hidden');
     if (canvas.getContext) {
         let ctx = canvas.getContext("2d");
 
-        const rectW = 50;
-        const rectH = 50;
+        let n = constants.get(id).n;
+        let rectW = constants.get(id).width;
+        let rectH = constants.get(id).height;
 
         for (let i = 0; i < n; i++) {
             for (let j = 0; j < n; j++) {
-                ctx.fillStyle = 'grey';
-                ctx.fillRect(rectW * j, rectH * i, rectW, rectH);
+                // Choose random squares to be mines.
+                // if (Math.floor(Math.random() * n);
+                let box = new Rectangle(rectW * j, rectH * i, rectW, rectH);
+                box.draw(ctx);
             }
         }
     }
