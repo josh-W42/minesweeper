@@ -3,6 +3,13 @@
     and drawing on the canvas.
 */
 
+
+/*
+    Breakthrough in logic:
+        When opening up boxes, you have to open every box that is "open" or not bordering a mine
+        and stop in a direction when you open a box that is bordering a mine
+*/
+
 import { Rectangle } from './classes/Rectangle.js';
 
 let data = null;
@@ -11,6 +18,9 @@ fetch('../data/data.json')
     .catch(error => console.log('Error occured in data retrival'))
     .then(json => data = json)
     .catch(error => console.log('Error occured in data assignment'));
+
+    // Make all boxes, randomly choose some to be mines then search?
+    // MY best implementation is to use a graph, but idk how...
 
 const setupCanvas = id => {
     let canvas = document.querySelector('#canvas');
@@ -22,12 +32,13 @@ const setupCanvas = id => {
     
     if (canvas.getContext) {
         let ctx = canvas.getContext("2d");
-        const n = difficulty.blocksPerRow;
+        const n_row = difficulty.blocksPerRow;
+        const n_column = difficulty.blocksPerColumn;
         const rectW = difficulty.blockWidth;
         const rectH = difficulty.blockHeight;
 
-        for (let i = 0; i < n; i++) {
-            for (let j = 0; j < n; j++) {
+        for (let i = 0; i < n_column; i++) {
+            for (let j = 0; j < n_row; j++) {
                 // Choose random squares to be mines.
                 // if (Math.floor(Math.random() * n);
                 let box = new Rectangle(rectW * j, rectH * i, rectW, rectH);

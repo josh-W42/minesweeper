@@ -4,37 +4,45 @@
             "id": 1,
             "name": "easy",
             "blocksPerRow": 10,
+            "blocksPerColumn": 10,
             "blockWidth": 50,
             "blockHeight": 50,
             "canvasWidth": 500,
-            "canvasHeight": 500
+            "canvasHeight": 500,
+            "flags": 10
         },
         {
             "id": 2,
             "name": "Medium",
-            "blocksPerRow": "TODO",
+            "blocksPerRow": 15,
+            "blocksPerColumn": 12,
             "blockWidth": 50,
             "blockHeight": 50,
-            "canvasWidth": "TODO",
-            "canvasHeight": "TODO"
+            "canvasWidth": 650,
+            "canvasHeight": 600,
+            "flags": 40
         },
         {
             "id": 3,
             "name": "Hard",
-            "blocksPerRow": "TODO",
+            "blocksPerRow": 20,
+            "blocksPerColumn": 15,
             "blockWidth": 50,
             "blockHeight": 50,
-            "canvasWidth": "TODO",
-            "canvasHeight": "TODO"
+            "canvasWidth": 1000,
+            "canvasHeight": 750,
+            "flags": 90
         },
         {
             "id": 4,
             "name": "CUSTOM",
             "blocksPerRow": "TODO",
+            "blocksPerColumn": "TODO",
             "blockWidth": "TODO",
             "blockHeight": "TODO",
             "canvasWidth": "TODO",
-            "canvasHeight": "TODO"
+            "canvasHeight": "TODO",
+            "flags": "TODO"
         }
     ]
 }
