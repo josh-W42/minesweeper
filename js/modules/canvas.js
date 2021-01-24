@@ -3,7 +3,7 @@
     and drawing on the canvas.
 */
 
-import { Box } from './classes/Rectangle.js';
+import { Box } from './classes/Box.js';
 import { Mine } from './classes/Mine.js';
 import { Grid } from './classes/Grid.js';
 
@@ -36,17 +36,15 @@ const setupCanvas = id => {
         const rectH = difficulty.blockHeight;
 
         grid = new Grid(n_row, n_column);
-        grid.fillRandomCordinates();
-
-        console.log(typeof ctx);
+        grid.fillRandomCordinates(difficulty.minimumMines, difficulty.mineMultiplier);
     
         for (let i = 0; i < n_column; i++) {
             for (let j = 0; j < n_row; j++) {
                 let box = null;
-                if (grid.array[i][j]) {
-                    box = new Box(rectW * j, rectH * i, rectW, rectH);
-                } else {
+                if (grid.array[j][i]) {
                     box = new Mine(rectW * j, rectH * i, rectW, rectH);
+                } else {
+                    box = new Box(rectW * j, rectH * i, rectW, rectH);
                 }
                 box.draw(ctx);
             }

@@ -9,7 +9,9 @@
             "blockHeight": 50,
             "canvasWidth": 500,
             "canvasHeight": 500,
-            "flags": 10
+            "flags": 10,
+            "mineMultiplier": 0.0,
+            "minimumMines": 3
         },
         {
             "id": 2,
@@ -20,7 +22,9 @@
             "blockHeight": 50,
             "canvasWidth": 650,
             "canvasHeight": 600,
-            "flags": 40
+            "flags": 40,
+            "mineMultiplier": 0.3,
+            "minimumMines": 10
         },
         {
             "id": 3,
@@ -31,7 +35,9 @@
             "blockHeight": 50,
             "canvasWidth": 1000,
             "canvasHeight": 750,
-            "flags": 90
+            "flags": 90,
+            "mineMultiplier": 0.6,
+            "minimumMines": 25
         },
         {
             "id": 4,
@@ -42,7 +48,8 @@
             "blockHeight": "TODO",
             "canvasWidth": "TODO",
             "canvasHeight": "TODO",
-            "flags": "TODO"
+            "flags": "TODO",
+            "mineMultiplier": "TODO"
         }
     ]
 }
