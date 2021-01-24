@@ -3,14 +3,9 @@
     and drawing on the canvas.
 */
 
-
-/*
-    Breakthrough in logic:
-        When opening up boxes, you have to open every box that is "open" or not bordering a mine
-        and stop in a direction when you open a box that is bordering a mine
-*/
-
-import { Rectangle } from './classes/Rectangle.js';
+import { Box } from './classes/Rectangle.js';
+import { Mine } from './classes/Mine.js';
+import { Grid } from './classes/Grid.js';
 
 let data = null;
 fetch('../data/data.json')
@@ -19,9 +14,12 @@ fetch('../data/data.json')
     .then(json => data = json)
     .catch(error => console.log('Error occured in data assignment'));
 
-    // Make all boxes, randomly choose some to be mines then search?
-    // MY best implementation is to use a graph, but idk how...
+let grid = null;
 
+/**
+ * Sets up the game canvas.
+ * @param {Number} id - The difficulty identifier. ie. 1 - Easy, 2 - Medium etc...
+ */
 const setupCanvas = id => {
     let canvas = document.querySelector('#canvas');
     const difficulty = data.difficulty.filter(difficulty => difficulty.id === id)[0]; // Expecting one id.
@@ -37,11 +35,19 @@ const setupCanvas = id => {
         const rectW = difficulty.blockWidth;
         const rectH = difficulty.blockHeight;
 
+        grid = new Grid(n_row, n_column);
+        grid.fillRandomCordinates();
+
+        console.log(typeof ctx);
+    
         for (let i = 0; i < n_column; i++) {
             for (let j = 0; j < n_row; j++) {
-                // Choose random squares to be mines.
-                // if (Math.floor(Math.random() * n);
-                let box = new Rectangle(rectW * j, rectH * i, rectW, rectH);
+                let box = null;
+                if (grid.array[i][j]) {
+                    box = new Box(rectW * j, rectH * i, rectW, rectH);
+                } else {
+                    box = new Mine(rectW * j, rectH * i, rectW, rectH);
+                }
                 box.draw(ctx);
             }
         }
