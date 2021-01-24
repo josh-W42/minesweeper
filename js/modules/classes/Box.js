@@ -24,11 +24,11 @@ class Box {
      * @param {Object} context - Often refered to as ctx for canvas.
      */
     draw = function(context) {
-        // First we have to make the actual rectangle.
-        context.fillStyle = 'grey';
+        // This will be the border
+        context.fillStyle = 'black';
         context.fillRect(this.x, this.y, this.width, this.height);
-
-        // Then we have to draw the border
+        
+        // This will be the the actual rectangle.
         context.fillStyle = "white";
         context.fillRect(this.x + 1, this.y + 1, this.width - 2, this.height - 2);
     }
@@ -38,7 +38,8 @@ class Box {
      * @param {Object} context - Often referted to as ctx for canvas.
      */
     open = function(context) {
-        console.log('HI');
+        context.fillStyle = 'grey';
+        context.fillRect(this.x + 1, this.y + 1, this.width - 2, this.height - 2);
     };
 }
 
