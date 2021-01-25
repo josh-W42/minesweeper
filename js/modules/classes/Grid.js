@@ -1,4 +1,3 @@
-import { Box } from './Box.js';
 
 class Grid {
     /**
@@ -90,20 +89,17 @@ class Grid {
                 let isOutOfBounds = false;
                 if (position.x < 0 || position.x === this.width 
                     || position.y < 0 || position.y === this.height) {
-                        isOutOfBounds = true;
-                }
-
-                if (!isOutOfBounds) {
-                    let box = this.array[position.x][position.y];
-
-                    if (box.isMine) {
-                        surroundingMines++;
                         return false;
-                    } else {
-                        return true;
-                    }
                 }
-                return false;
+                let box = this.array[position.x][position.y];
+
+                if (box.isMine) {
+                    surroundingMines++;
+                    return false;
+                } else {
+                    return true;
+                }
+
             });
 
             if (surroundingMines > 0) {
