@@ -43,6 +43,15 @@ class Box {
         this.hasBeenOpened = true;
         context.fillStyle = 'grey';
         context.fillRect(this.x + 1, this.y + 1, this.width - 2, this.height - 2);
+
+        // Draw the number if any.
+        if (this.surroundingMines > 0) {
+            context.fillStyle = 'white';
+            context.font = '48px serif';
+            const adjustedX = this.x + Math.floor(this.width / 4);
+            const adjustedY = this.y + Math.floor(this.height / 1.25);
+            context.fillText(`${this.surroundingMines}`, adjustedX, adjustedY, this.width);
+        }
     };
 }
 

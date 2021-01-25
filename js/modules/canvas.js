@@ -69,8 +69,8 @@ const registerClicks = context => {
         // block width and height should be constant across difficulties
 
         // By using the mouse's x and y cordinates relative to the window,
-        //      we can approximate the x and y indicies within the grid 
-        //      to what specific box was clicked.
+        //      we can approximate the x and y indicies of the specific box
+        //      within the grid that was clicked.
         let index_x = Math.floor((e.clientX - boundaries.left) / data.difficulty[0].blockWidth);
         let index_y = Math.floor((e.clientY - boundaries.top) / data.difficulty[0].blockHeight);
 
