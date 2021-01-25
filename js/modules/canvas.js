@@ -5,7 +5,7 @@
 
 import { Box } from './classes/Box.js';
 import { Mine } from './classes/Mine.js';
-import { Grid, cascadingOpen } from './classes/Grid.js';
+import { Grid } from './classes/Grid.js';
 
 let data = null;
 fetch('../data/data.json')
@@ -74,7 +74,7 @@ const registerClicks = context => {
         let index_x = Math.floor((e.clientX - boundaries.left) / data.difficulty[0].blockWidth);
         let index_y = Math.floor((e.clientY - boundaries.top) / data.difficulty[0].blockHeight);
 
-        grid.cascadingOpen(index_x, index_y);
+        grid.cascadingOpen(index_x, index_y, context);
     });
 }
 

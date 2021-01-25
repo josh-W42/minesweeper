@@ -17,6 +17,8 @@ class Box {
         this.width = width;
         this.height = height;
         this.isMine = false;
+        this.surroundingMines = 0;
+        this.hasBeenOpened = false;
     }
 
     /**
@@ -38,6 +40,7 @@ class Box {
      * @param {Object} context - Often referted to as ctx for canvas.
      */
     open = function(context) {
+        this.hasBeenOpened = true;
         context.fillStyle = 'grey';
         context.fillRect(this.x + 1, this.y + 1, this.width - 2, this.height - 2);
     };

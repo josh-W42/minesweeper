@@ -1,3 +1,5 @@
+import { Box } from './Box.js';
+
 class Grid {
     /**
      * Defines 2D array with x rows and y columns.
@@ -39,13 +41,84 @@ class Grid {
         for (let i = 0; i < cycles; i++) {
             let x = Math.floor(Math.random() * max_x);
             let y = Math.floor(Math.random() * max_y);
-            console.log(max_x, max_y);
 
             // Edge Case Detection
             x = x >= this.width ? this.width - 1 : x;
             y = y >= this.height ? this.height - 1: y;
 
             this.array[x][y] = true;
+        }
+    }
+
+    /**
+     * A recusive function that is called when a box is clicked on the canvas. Will open other boxes under right conditions.
+     * @param {Number} i - The horizontal index of the box that has been clicked.
+     * @param {Number} j - The Vertical index of the box that has been clicked.
+     * @param {Object} context - The context of the canvas, needed for opening boxes.
+     */
+    cascadingOpen(i, j, context) {
+        // First determine box type.
+        if (this.array[i][j].isMine) {
+            // This will end the game.
+            this.array[i][j].open();
+        } else if (!this.array[i][j].hasBeenOpened) {
+            /*
+            For Reference, this is the order of the positions.
+                Top Left Corner
+                Top Center  
+                Top Right Corner
+                Center Left
+                Center Right
+                Bottom Left
+                Bottom Center
+                Bottom Right
+            */
+           this.positions = [
+               {x: i - 1, y: j - 1},
+               {x: i, y: j - 1},
+               {x: i + 1, y: j - 1},
+               {x: i - 1, y: j},
+               {x: i + 1, y: j},
+               {x: i - 1, y: j + 1},
+               {x: i, y: j + 1},
+               {x: i + 1, y: j + 1}
+            ];
+            // Determine if surrounded by mines.
+            let surroundingMines = 0;
+            
+            let nextPositions = this.positions.filter(position => {
+                let isOutOfBounds = false;
+                if (position.x < 0 || position.x === this.width 
+                    || position.y < 0 || position.y === this.height) {
+                        isOutOfBounds = true;
+                }
+
+                if (!isOutOfBounds) {
+                    let box = this.array[position.x][position.y];
+
+                    if (box.isMine) {
+                        surroundingMines++;
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+                return false;
+            });
+
+            if (surroundingMines > 0) {
+                // Don't call cascading open on other boxes.
+                // Reveal just the number of mines.
+                this.array[i][j].surroundingMines = surroundingMines;
+                this.array[i][j].open(context);
+            } else {
+                this.array[i][j].open(context);
+
+                // Call cascadingOpen on other surrounding boxes.
+                nextPositions.forEach(position => {
+                    this.cascadingOpen(position.x, position.y, context);
+                });
+            }
         }
     }
 }
