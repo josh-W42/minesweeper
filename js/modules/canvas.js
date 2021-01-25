@@ -51,7 +51,7 @@ const setupCanvas = id => {
             }
         }
 
-        // Set up canvas to register clicks on the canvas.
+        // Add evnets to register clicks on the canvas.
         registerClicks(ctx);
     }
 }

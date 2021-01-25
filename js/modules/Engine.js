@@ -17,20 +17,12 @@ const startGame = id => {
  */
 const endGame = () => {
     console.log('Game Over');
-}
 
-/**
- * Sets up end game sceen for a player win state.
- */
-const playerWin = () => {
-    console.log('Win');
-}
+    // Remove Grid
+    document.querySelector('#canvas').classList.toggle('hidden');
 
-/**
- * Sets up end game sceen for a player lose state.
- */
-const playerLost = () => {
-    console.log('Lost');
+    // Display End Game Content
+    document.querySelector('#gameOverSection').classList.toggle('hidden');
 }
 
 export { startGame, endGame };
