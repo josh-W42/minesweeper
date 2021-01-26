@@ -16,7 +16,7 @@ class Mine extends Box {
         context.fillRect(this.x + 1, this.y + 1, this.width - 2, this.height - 2);
     }
     open = function(context = undefined) {
-        endGame();
+        endGame(false);
     }
 }
 

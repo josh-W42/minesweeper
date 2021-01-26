@@ -24,7 +24,6 @@ const setupCanvas = id => {
     let canvas = document.querySelector('#canvas');
     const difficulty = data.difficulty.filter(difficulty => difficulty.id === id)[0]; // Expecting one id.
 
-    
     canvas.width = difficulty.canvasWidth;
     canvas.height = difficulty.canvasHeight;
     canvas.classList.remove('hidden');
@@ -33,10 +32,12 @@ const setupCanvas = id => {
         let ctx = canvas.getContext("2d");
         const n_row = difficulty.blocksPerRow;
         const n_column = difficulty.blocksPerColumn;
+
+        console.log(n_row, n_column);
         const rectW = difficulty.blockWidth;
         const rectH = difficulty.blockHeight;
         
-        grid = new Grid(n_row, n_column);
+        grid = new Grid(n_row, n_column, ctx);
         grid.fillRandomCordinates(difficulty.minimumMines, difficulty.mineMultiplier);
         
         for (let i = 0; i < n_column; i++) {
@@ -52,30 +53,25 @@ const setupCanvas = id => {
         }
 
         // Add evnets to register clicks on the canvas.
-        registerClicks(ctx);
+        canvas.addEventListener('mouseup', canvasClickCallback);
     }
 }
 
-/**
- * Adds Click listener to the canvas.
- * This should be called after the canvas has been sized correctly and has rendered.
- *  @param {Object} context - The context of the canvas.
- */
-const registerClicks = context => {
-    let canvas = document.querySelector('#canvas');
-    
-    canvas.addEventListener('click', e => {
+const canvasClickCallback = e => {
+    // Left mouse button has id of 0, right button is 2;
+    if (e.button === 0) {
         let boundaries = canvas.getBoundingClientRect();
         // block width and height should be constant across difficulties
-
+    
         // By using the mouse's x and y cordinates relative to the window,
         //      we can approximate the x and y indicies of the specific box
         //      within the grid that was clicked.
+    
         let index_x = Math.floor((e.clientX - boundaries.left) / data.difficulty[0].blockWidth);
         let index_y = Math.floor((e.clientY - boundaries.top) / data.difficulty[0].blockHeight);
-
-        grid.cascadingOpen(index_x, index_y, context);
-    });
+        
+        grid.cascadingOpen(index_x, index_y);
+    }
 }
 
-export { setupCanvas };
+export { setupCanvas, canvasClickCallback };
