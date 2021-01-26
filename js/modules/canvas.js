@@ -15,6 +15,7 @@ fetch('../data/data.json')
     .catch(error => console.log('Error occured in data assignment'));
 
 let grid = null;
+let ctx = null;
 
 /**
  * Sets up the game canvas.
@@ -26,17 +27,18 @@ const setupCanvas = id => {
 
     canvas.width = difficulty.canvasWidth;
     canvas.height = difficulty.canvasHeight;
+
+    document.querySelector('#gameSection .flagDisplay').textContent = difficulty.flags;
     
     if (canvas.getContext) {
-        let ctx = canvas.getContext("2d");
+        ctx = canvas.getContext("2d");
         const n_row = difficulty.blocksPerRow;
         const n_column = difficulty.blocksPerColumn;
 
-        console.log(n_row, n_column);
         const rectW = difficulty.blockWidth;
         const rectH = difficulty.blockHeight;
         
-        grid = new Grid(n_row, n_column, ctx);
+        grid = new Grid(n_row, n_column, ctx, difficulty.flags);
         grid.fillRandomCordinates(difficulty.minimumMines, difficulty.mineMultiplier);
         
         for (let i = 0; i < n_column; i++) {
@@ -52,24 +54,41 @@ const setupCanvas = id => {
         }
 
         // Add evnets to register clicks on the canvas.
-        canvas.addEventListener('mouseup', canvasClickCallback);
+        canvas.addEventListener('click', canvasClickCallback);
+        canvas.addEventListener('contextmenu', canvasClickCallback);
     }
 }
 
 const canvasClickCallback = e => {
-    // Left mouse button has id of 0, right button is 2;
-    if (e.button === 0) {
-        let boundaries = canvas.getBoundingClientRect();
-        // block width and height should be constant across difficulties
+    let boundaries = canvas.getBoundingClientRect();
     
-        // By using the mouse's x and y cordinates relative to the window,
-        //      we can approximate the x and y indicies of the specific box
-        //      within the grid that was clicked.
+    // By using the mouse's x and y cordinates relative to the window,
+    //      we can approximate the x and y indicies of the specific box
+    //      within the grid that was clicked.
     
-        let index_x = Math.floor((e.clientX - boundaries.left) / data.difficulty[0].blockWidth);
-        let index_y = Math.floor((e.clientY - boundaries.top) / data.difficulty[0].blockHeight);
-        
+    // block width and height should be constant across difficulties
+    let index_x = Math.floor((e.clientX - boundaries.left) / data.difficulty[0].blockWidth);
+    let index_y = Math.floor((e.clientY - boundaries.top) / data.difficulty[0].blockHeight);
+    
+    // Left mouse button has id of 0. Other ids will map to flag usage.
+    if (e.buttons === 0) {
         grid.cascadingOpen(index_x, index_y);
+    } else {
+        // Prevent the context menu from opening.
+        e.preventDefault();
+        // Use a flag.
+        let box = grid.array[index_x][index_y];
+        let flagDisplay = document.querySelector('#gameSection .flagDisplay');
+        if (!box.hasOpened) {
+            if (box.isFlagged) {
+                box.isFlagged = false;
+                flagDisplay.textContent = Number(flagDisplay.textContent) + 1;
+            } else if (Number(flagDisplay.textContent) > 0) {
+                box.isFlagged = true;
+                flagDisplay.textContent = Number(flagDisplay.textContent) - 1;
+            }
+            box.draw(ctx);
+        }
     }
 }
 

@@ -9,7 +9,7 @@
             "blockHeight": 50,
             "canvasWidth": 500,
             "canvasHeight": 500,
-            "flags": 10,
+            "flags": 20,
             "mineMultiplier": 0.0,
             "minimumMines": 3
         },
@@ -22,7 +22,7 @@
             "blockHeight": 50,
             "canvasWidth": 750,
             "canvasHeight": 600,
-            "flags": 40,
+            "flags": 50,
             "mineMultiplier": 0.3,
             "minimumMines": 10
         },
@@ -35,7 +35,7 @@
             "blockHeight": 50,
             "canvasWidth": 1000,
             "canvasHeight": 750,
-            "flags": 90,
+            "flags": 80,
             "mineMultiplier": 0.6,
             "minimumMines": 25
         },

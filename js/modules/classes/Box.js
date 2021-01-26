@@ -18,6 +18,8 @@ class Box {
         this.height = height;
         this.isMine = false;
         this.surroundingMines = 0;
+        this.isFlagged = false;
+        this.hasOpened = false;
     }
 
     /**
@@ -32,6 +34,10 @@ class Box {
         // This will be the the actual rectangle.
         context.fillStyle = "white";
         context.fillRect(this.x + 1, this.y + 1, this.width - 2, this.height - 2);
+
+        if (this.isFlagged) {
+            context.drawImage(document.querySelector('#flagimg'), this.x + 5, this.y + 5, (this.width / 1.25), (this.height / 1.25));
+        }
     }
 
     /**
@@ -39,6 +45,7 @@ class Box {
      * @param {Object} context - Often referted to as ctx for canvas.
      */
     open = function(context) {
+        this.hasOpened = true;
         context.fillStyle = 'grey';
         context.fillRect(this.x + 1, this.y + 1, this.width - 2, this.height - 2);
 

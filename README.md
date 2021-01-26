@@ -55,6 +55,10 @@ screen captures of your app -->
 * screen captures of your code
 
 ---
+### Credits
+Flag icon made by [Smashicon](https://www.flaticon.com/authors/smashicons") from [flaticon.com](https://www.flaticon.com/).
+
+---
 
 ### Future development
 I anticipate refractoring various features of this project for efficiency. Additionally, I'll be updating the User Interface over time for style.

@@ -6,7 +6,7 @@ class Grid {
      * @param {Number} width - The width of the grid.
      * @param {Number} height - The height of the grid.
      */
-    constructor(width, height, context) {
+    constructor(width, height, context, flags) {
         this.width = width;
         this.height = height;
         this.array = this.makeGrid();
@@ -72,29 +72,27 @@ class Grid {
      */
     cascadingOpen(i, j) {
         // First determine box type.
-        if (this.array[i][j].isMine) {
+        if (this.array[i][j].isMine && !this.array[i][j].isFlagged) {
             // This will end the game.
             this.array[i][j].open();
-        } else if (!this.revealedBoxes.has(`${i}, ${j}`)) {
+        } else if (!(this.revealedBoxes.has(`${i}, ${j}`)) && !this.array[i][j].isFlagged) {
             this.revealedBoxes.add(`${i}, ${j}`);
             // Before any other computation, check if the player has won.
-            console.log(this.n_mines, this.revealedBoxes.size);
             if (this.checkWinConditions()) {
                 endGame(true);
             }
-            
             /*
-            For Reference, this is the order of the positions.
-            Top Left Corner
-            Top Center  
-            Top Right Corner
-            Center Left
-            Center Right
-            Bottom Left
-            Bottom Center
-            Bottom Right
+                For Reference, this is the order of the positions.
+                Top Left Corner
+                Top Center  
+                Top Right Corner
+                Center Left
+                Center Right
+                Bottom Left
+                Bottom Center
+                Bottom Right
             */
-           this.positions = [
+            this.positions = [
                {x: i - 1, y: j - 1},
                {x: i, y: j - 1},
                {x: i + 1, y: j - 1},
@@ -115,36 +113,36 @@ class Grid {
                 if (position.x < 0 || position.x === this.width ||
                     position.y < 0 || position.y === this.height) {
                         continue;
-                    }
-                    let box = this.array[position.x][position.y];
-                    let setTest = this.revealedBoxes.has(`${position.x}, ${position.y}`);
+                }
+                let box = this.array[position.x][position.y];
+                let setTest = this.revealedBoxes.has(`${position.x}, ${position.y}`);
                     
-                    if (!box.isMine && !setTest) {
-                        nextPositions.push(position);
-                    } else if (box.isMine) {
-                        surroundingMines++;
-                    }
+                if (!box.isMine && !setTest) {
+                    nextPositions.push(position);
+                } else if (box.isMine) {
+                    surroundingMines++;
                 }
-                
-                if (surroundingMines > 0) {
-                    // Don't call cascading open on other boxes.
-                    // Reveal just the number of mines.
-                    this.array[i][j].surroundingMines = surroundingMines;
-                    this.array[i][j].open(this.context);
-                } else {
-                    this.array[i][j].open(this.context);
-                    // Call cascadingOpen on other surrounding boxes.
-                    for (let position of nextPositions) {
-                        this.cascadingOpen(position.x, position.y);
-                    }
-                }
-                
             }
+                
+            if (surroundingMines > 0) {
+                // Don't call cascading open on other boxes.
+                // Reveal just the number of mines.
+                this.array[i][j].surroundingMines = surroundingMines;
+                this.array[i][j].open(this.context);
+            } else {
+                this.array[i][j].open(this.context);
+                // Call cascadingOpen on other surrounding boxes.
+                for (let position of nextPositions) {
+                    this.cascadingOpen(position.x, position.y);
+                }
+            }    
         }
+    }
         
     checkWinConditions() {
         return this.revealedBoxes.size === this.n_boxes;
     }
+
 }
 
 export { Grid };

@@ -1,5 +1,10 @@
 main {
+    display: flex;
+    justify-content: center;
     text-align: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 5%;
 }
 
 .hidden {
