@@ -26,7 +26,6 @@ const setupCanvas = id => {
 
     canvas.width = difficulty.canvasWidth;
     canvas.height = difficulty.canvasHeight;
-    canvas.classList.remove('hidden');
     
     if (canvas.getContext) {
         let ctx = canvas.getContext("2d");

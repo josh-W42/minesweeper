@@ -22,3 +22,8 @@ canvas {
 .displayDiv {
     margin: auto 10px;
 }
+
+#hud {
+    display: flex;
+    justify-content: center;
+}

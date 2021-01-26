@@ -19,19 +19,29 @@
             <br/><br/>
             <button class='playBtn' disabled>Play</button>
         </section>
-        <canvas id="canvas" class='hidden'>
-            Oh no! Your browser doesn't support canvas! We can't run the game!
-        </canvas>
+        <section id='gameSection' class="hidden">
+            <div id='hud'>
+                <div class='displayDiv'>
+                    <p>Time: <span class='timeDisplay'>0:0</span></p>
+                </div>
+                <div class='displayDiv'>
+                    <p>Flags: <span class='flagsDisplay'>1</span></p>
+                </div>
+            </div>
+            <canvas id="canvas">
+                Oh no! Your browser doesn't support canvas! We can't run the game!
+            </canvas>
+        </section>
         <section id='gameOverSection' class="hidden">
             <h2 class='sectionTitle'></h2>
             <div class='row'>
                 <div class='displayDiv'>
                     <p>Time:</p>
-                    <p id='timeDisplay'>00:12:54</p>
+                    <p class='timeDisplay'></p>
                 </div>
                 <div class='displayDiv'>
                     <p>Best Time: </p>
-                    <p id='bestDisplay'>00:11:12</p>
+                    <p class='bestDisplay'>00:11:12</p>
                 </div>
             </div>
             <!-- For the best time implement localstorage -->
