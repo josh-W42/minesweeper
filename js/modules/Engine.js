@@ -5,14 +5,17 @@
 import { setupCanvas, canvasClickCallback } from "./canvas.js";
 
 let intervalId = null;
+let difficultyId = null;
 
 /**
  * Runs processes to begin the game.
  * @param {Number} id - Difficulty Identifier.
  */
 const startGame = id => {
+    difficultyId = id;
     document.querySelector('#gameSection').classList.toggle('hidden');
     intervalId = startTimer();
+    console.log(window.localStorage);
     setupCanvas(id);
 }
 
@@ -21,17 +24,11 @@ const startGame = id => {
  * @param {Boolean} hasWonGame - True if the player has found all boxes. False if they opened a mine.
  */
 const endGame = hasWonGame => {
+    // Stop the timer.
     clearInterval(intervalId);
 
-    if (hasWonGame) {
-        document.querySelector('#gameOverSection .sectionTitle').textContent = 'You Won!';
-    } else {
-        document.querySelector('#gameOverSection .sectionTitle').textContent = 'Game Over';
-    }
-    // Transfer Time data and reset.
-    let gameTimer = document.querySelector('#gameSection .timeDisplay');
-    document.querySelector('#gameOverSection .timeDisplay').textContent = gameTimer.textContent;
-    gameTimer.textContent = '0:0';
+    // Get Time information. Display if win.
+    configEndDisplay(hasWonGame);
 
     // Remove The Listener On Canvas.
     document.querySelector('#canvas').removeEventListener('mouseup', canvasClickCallback);
@@ -41,6 +38,7 @@ const endGame = hasWonGame => {
 
     // Display End Game Content
     document.querySelector('#gameOverSection').classList.toggle('hidden');
+
 }
 
 const startTimer = () => {
@@ -50,8 +48,46 @@ const startTimer = () => {
     return setInterval(() => {
         let currentTime = Date.now();
         currentTime = new Date(currentTime - startTime);
-        timeDisplay.textContent = `${currentTime.getMinutes()}:${currentTime.getSeconds()}`;
+        timeDisplay.textContent = `${currentTime.getHours() - 16}:${currentTime.getMinutes()}:${currentTime.getSeconds()}`;
     }, 500);
+}
+
+const getBestTime = () => {
+    let minTime = {hours: 24, minutes: 60, seconds: 60};
+    for (let time of Object.values(window.localStorage)) {
+        const timeSplit = time.split(":");
+        if (timeSplit[0] <= minTime.hours) {
+            if (timeSplit[1] <= minTime.minutes) {
+                if (timeSplit[2] < minTime.seconds) {
+                    minTime = {hours: timeSplit[0], minutes: timeSplit[1], seconds: timeSplit[2]};
+                }
+            }
+        }
+    }
+    return minTime.hours === 24 ? null : `${minTime.hours}:${minTime.minutes}:${minTime.seconds}`;
+}
+
+const configEndDisplay = (didWin) => {
+    // What happens when player wins
+    // display you won
+    // if the time they did is equal to the best time, display 
+    let gameTimer = document.querySelector('#gameSection .timeDisplay');
+    if (didWin) {
+        document.querySelector('#gameOverSection .sectionTitle').textContent = 'You Won!';
+        window.localStorage.setItem(Date.now().toString(), gameTimer.textContent);
+    } else {
+        document.querySelector('#gameOverSection .sectionTitle').textContent = 'Game Over';
+    }
+    // Have to get the best time
+    let bestTime = getBestTime() || 'You have to win first!';
+    if (didWin && bestTime === gameTimer.textContent) {
+        document.querySelector('#newRecord').classList.remove('hidden');
+    } else {
+        document.querySelector('#newRecord').classList.add('hidden');
+    }
+    document.querySelector('#gameOverSection .timeDisplay').textContent = gameTimer.textContent;
+    document.querySelector('#gameOverSection .bestDisplay').textContent = bestTime;
+    gameTimer.textContent = '0:0:0';
 }
 
 export { startGame, endGame };
