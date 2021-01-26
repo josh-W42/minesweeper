@@ -20,7 +20,7 @@
             "blocksPerColumn": 12,
             "blockWidth": 50,
             "blockHeight": 50,
-            "canvasWidth": 650,
+            "canvasWidth": 750,
             "canvasHeight": 600,
             "flags": 40,
             "mineMultiplier": 0.3,
