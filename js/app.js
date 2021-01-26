@@ -9,6 +9,9 @@ const main = () => {
         el.addEventListener('click', e => {
             // Get the difficulty selected.
             selectedDifficulty = Number(e.target.dataset.difficulty);
+            if (document.querySelectorAll('.active').length > 0) {
+                document.querySelectorAll('.active').forEach(btn => btn.classList.toggle('active'));
+            }
             e.target.classList.toggle('active');
 
             // Unlock play button.

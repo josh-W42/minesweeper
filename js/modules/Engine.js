@@ -2,7 +2,7 @@
     The Engine holds game data and the logic
     that starts and stops the game.
 */
-import { setupCanvas } from "./canvas.js";
+import { setupCanvas, canvasClickCallback } from "./canvas.js";
 
 /**
  * Runs processes to begin the game.
@@ -14,9 +14,16 @@ const startGame = id => {
 
 /**
  * Runs all processes when the game has ended.
+ * @param {Boolean} hasWonGame - True if the player has found all boxes. False if they opened a mine.
  */
-const endGame = () => {
-    console.log('Game Over');
+const endGame = hasWonGame => {
+    if (hasWonGame) {
+        document.querySelector('#gameOverSection .sectionTitle').textContent = 'You Won!';
+    } else {
+        document.querySelector('#gameOverSection .sectionTitle').textContent = 'Game Over';
+    }
+
+    document.querySelector('#canvas').removeEventListener('mouseup', canvasClickCallback);
 
     // Remove Grid
     document.querySelector('#canvas').classList.toggle('hidden');

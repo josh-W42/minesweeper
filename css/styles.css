@@ -8,9 +8,17 @@ main {
 
 .active {
     border: 5px solid black;
-
 }
 
 canvas {
     border: 1px solid black;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.displayDiv {
+    margin: auto 10px;
 }
