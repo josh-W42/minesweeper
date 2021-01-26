@@ -41,6 +41,9 @@ const endGame = hasWonGame => {
 
 }
 
+/**
+ * Begins the time interval for the game. Updates the time every half second.
+ */
 const startTimer = () => {
     let startTime = Date.now();
     let timeDisplay = document.querySelector('#gameSection .timeDisplay');
@@ -52,6 +55,9 @@ const startTimer = () => {
     }, 500);
 }
 
+/**
+ * Produces the best time the player has obtained for a specific difficulty. Data is stored locally via localStorage.
+ */
 const getBestTime = () => {
     let minTime = {hours: 24, minutes: 60, seconds: 60};
     for (let jsonString of Object.values(window.localStorage)) {
@@ -69,6 +75,10 @@ const getBestTime = () => {
     return minTime.hours === 24 ? null : `${minTime.hours}:${minTime.minutes}:${minTime.seconds}`;
 }
 
+/**
+ * Sets up the end of the game window after the player has won or lost.
+ * @param {*} didWin - True if the player did win the game, False if otherwise.
+ */
 const configEndDisplay = didWin => {
     let gameTimer = document.querySelector('#gameSection .timeDisplay');
     if (didWin) {
