@@ -54,31 +54,29 @@ const startTimer = () => {
 
 const getBestTime = () => {
     let minTime = {hours: 24, minutes: 60, seconds: 60};
-    for (let time of Object.values(window.localStorage)) {
-        const timeSplit = time.split(":");
-        if (timeSplit[0] <= minTime.hours) {
-            if (timeSplit[1] <= minTime.minutes) {
-                if (timeSplit[2] < minTime.seconds) {
-                    minTime = {hours: timeSplit[0], minutes: timeSplit[1], seconds: timeSplit[2]};
-                }
+    for (let jsonString of Object.values(window.localStorage)) {
+        let obj = JSON.parse(jsonString);
+        if (obj.id === difficultyId) {
+            const timeSplit = obj.time.split(":");
+            if (timeSplit[0] <= minTime.hours &&
+                 timeSplit[1] <= minTime.minutes &&
+                 timeSplit[2] < minTime.seconds) {
+
+                minTime = {hours: timeSplit[0], minutes: timeSplit[1], seconds: timeSplit[2]};
             }
         }
     }
     return minTime.hours === 24 ? null : `${minTime.hours}:${minTime.minutes}:${minTime.seconds}`;
 }
 
-const configEndDisplay = (didWin) => {
-    // What happens when player wins
-    // display you won
-    // if the time they did is equal to the best time, display 
+const configEndDisplay = didWin => {
     let gameTimer = document.querySelector('#gameSection .timeDisplay');
     if (didWin) {
         document.querySelector('#gameOverSection .sectionTitle').textContent = 'You Won!';
-        window.localStorage.setItem(Date.now().toString(), gameTimer.textContent);
+        window.localStorage.setItem(Date.now().toString(), JSON.stringify({id: difficultyId, time: gameTimer.textContent}));
     } else {
         document.querySelector('#gameOverSection .sectionTitle').textContent = 'Game Over';
     }
-    // Have to get the best time
     let bestTime = getBestTime() || 'You have to win first!';
     if (didWin && bestTime === gameTimer.textContent) {
         document.querySelector('#newRecord').classList.remove('hidden');
