@@ -8,7 +8,7 @@ import { Mine } from './classes/Mine.js';
 import { Grid } from './classes/Grid.js';
 
 let data = null;
-fetch('../data/data.json')
+fetch('../difficultyData/data.json')
     .then(response => response.json())
     .catch(error => console.log('Error occured in data retrival'))
     .then(json => data = json)
