@@ -1,4 +1,4 @@
-{
+export const difficultyData = {
     "difficulty": [
         {
             "id": 1,

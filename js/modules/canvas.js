@@ -6,14 +6,9 @@
 import { Box } from './classes/Box.js';
 import { Mine } from './classes/Mine.js';
 import { Grid } from './classes/Grid.js';
+import { difficultyData } from './data.js';
 
-let data = null;
-fetch('../difficultyData/data.json')
-    .then(response => response.json())
-    .catch(error => console.log('Error occured in data retrival'))
-    .then(json => data = json)
-    .catch(error => console.log('Error occured in data assignment'));
-
+let data = difficultyData;
 let grid = null;
 let ctx = null;
 
