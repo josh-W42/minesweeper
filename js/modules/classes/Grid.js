@@ -14,6 +14,7 @@ class Grid {
         this.n_boxes = 0;
         this.revealedBoxes = new Set();
         this.context = context;
+        this.hasGameEnded = false;
     }
 
     /**
@@ -82,13 +83,15 @@ class Grid {
     cascadingOpen(i, j) {
         // First determine box type.
         if (this.array[i][j].isMine && !this.array[i][j].isFlagged) {
-            // This will end the game.
+            this.displayAll();
             this.array[i][j].open();
+            // This will end the game.
         } else if (!(this.revealedBoxes.has(`${i}, ${j}`)) && !this.array[i][j].isFlagged) {
             this.revealedBoxes.add(`${i}, ${j}`);
             // Before any other computation, check if the player has won.
-            if (this.checkWinConditions()) {
+            if (this.checkWinConditions() && !this.hasGameEnded) {
                 endGame(true);
+                this.displayAll();
             }
             /*
                 For Reference, this is the order of the positions.
@@ -147,11 +150,29 @@ class Grid {
             }    
         }
     }
-        
+
+    /**
+     * Checks if the player has won the game.
+     */
     checkWinConditions() {
         return this.revealedBoxes.size === this.n_boxes;
     }
 
+    /**
+     * Displays all boxes and mines. Used at the end of the game.
+     */
+    displayAll() {
+        this.hasGameEnded = true;
+        for (let i = 0; i < this.width; i++) {
+            for (let j = 0; j < this.height; j++) {
+                if (this.array[i][j].isMine && !this.array[i][j].isFlagged) {
+                    this.array[i][j].reveal(this.context);
+                } else if (!this.array[i][j].hasOpened) {
+                    this.cascadingOpen(i, j);
+                }
+            }
+        }
+    }
 }
 
 export { Grid };

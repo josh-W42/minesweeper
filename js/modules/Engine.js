@@ -14,7 +14,6 @@ let difficultyId = null;
 const startGame = id => {
     difficultyId = id;
     intervalId = startTimer();
-    console.log(window.localStorage);
     setupCanvas(id);
 }
 
@@ -30,14 +29,12 @@ const endGame = hasWonGame => {
     configEndDisplay(hasWonGame);
 
     // Remove The Listener On Canvas.
-    document.querySelector('#canvas').removeEventListener('mouseup', canvasClickCallback);
-
-    // Remove Game Screen
-    document.querySelector('#gameSection').classList.toggle('hidden');
+    const canvas = document.querySelector('#canvas');
+    canvas.removeEventListener('click', canvasClickCallback);
+    canvas.removeEventListener('contextmenu', canvasClickCallback);
 
     // Display End Game Content
     document.querySelector('#gameOverSection').classList.toggle('hidden');
-
 }
 
 /**

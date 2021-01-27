@@ -110,7 +110,7 @@ const configCustomData = () => {
         "canvasHeight": (Number(n_rows) * 50),
         "flags": Number(n_flags),
         "mineMultiplier": Number(mineMultiplier) / 10,
-        "minimumMines": 0
+        "minimumMines": Number(minimumMines)
     }
 }
 

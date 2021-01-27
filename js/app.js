@@ -56,6 +56,8 @@ const main = () => {
     // Restart the Game
     document.querySelector('#gameOverSection .playBtn').addEventListener('click', e => {
         document.querySelector('#gameOverSection').classList.toggle('hidden');
+        // Remove Game Screen
+        document.querySelector('#gameSection').classList.toggle('hidden');
         starterSection.classList.toggle('hidden');
     });
 
