@@ -5,6 +5,10 @@ main {
     margin-top: 5%;
 }
 
+body {
+    overflow: scroll;
+}
+
 .hidden {
     display: none;
 }

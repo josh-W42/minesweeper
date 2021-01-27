@@ -24,26 +24,31 @@
                 <div class='row'>
                     <div class="displayDiv">
                         <label for="width">Width</label>
-                        <input name="width" type="range" max="50" min="1" step="1" value="1" />
-                        <output class="rangeOutput" for="width">1</output>
+                        <input class="sliderInput" name="width" type="range" max="50" min="1" step="1" value="1" />
+                        <input class="numberInput" name="width" type="number" max="50" min="1" step="1" value="1" />
                     </div>
                     <div class="displayDiv">
                         <label for="height">Height</label>
-                        <input name="height" type="range" max="50" min="1" step="1" value="1" />
-                        <output class="rangeOutput" for="height">1</output>
+                        <input class="sliderInput" name="height" type="range" max="50" min="1" step="1" value="1" />
+                        <input class="numberInput" name="height" type="number" max="50" min="1" step="1" value="1" />
                     </div>
                 </div>
                 <div class='row'>
                     <div class="displayDiv">
                         <label for="mines">Mine Multiplier</label>
-                        <input name="mines" type="range" max="10" min="1" step="1" value="0" />
-                        <output class="rangeOutput" for="mines">1</output>
+                        <input class="sliderInput" name="mines" type="range" max="10" min="1" step="1" value="0" />
+                        <input class="numberInput" name="mines" type="number" max="10" min="1" step="1" value="0" />
                     </div>
                     <div class="displayDiv">
                         <label for="flags">Flags</label>
-                        <input name="flags" type="range" max="100" min="0" step="1" value="0" />
-                        <output class="rangeOutput" for="flags">1</output>
+                        <input class="sliderInput" name="flags" type="range" max="100" min="0" step="1" value="0" />
+                        <input class="numberInput" name="flags" type="number" max="100" min="0" step="1" value="0" />
                     </div>
+                </div>
+                <div class="displayDiv">
+                    <label for="minMines">Minimum Mines</label>
+                    <input class="sliderInput" name="minMines" type="range" max="1000" min="0" step="1" value="0" />
+                    <input class="numberInput" name="minMines" type="number" max="1000" min="0" step="1" value="0" />
                 </div>
                 <br/>
                 <label for="confirm">Confirm Selection:</label>

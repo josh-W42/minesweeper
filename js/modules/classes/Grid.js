@@ -39,6 +39,9 @@ class Grid {
         multiplier = multiplier > 1.0 ? 1.0 : multiplier;
         multiplier = multiplier < 0 ? 0 : multiplier;
 
+        // Just in case the user wants to be funny.
+        min_values = min_values > (this.width * this.height) ? (this.width * this.height) : min_values;
+
         const n_values = Math.floor(Math.random() * (max_x + max_y)) + min_values;
         const cycles = n_values + Math.floor(n_values * multiplier);
 
@@ -47,8 +50,9 @@ class Grid {
 
         for (let i = 0; i < cycles; i++) {
             // Custom infinite loop prevention.
-            if ((this.n_mines > this.width * this.height)) {
+            if (isNaN(cycles)) {
                 break;
+                alert("The input provided has triggered an error, please refresh the page.");
             }
 
             let x = Math.floor(Math.random() * max_x);

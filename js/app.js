@@ -8,7 +8,8 @@ const main = () => {
     const playButton = document.querySelector('#starterSection .playBtn');
     const customSection = document.querySelector("#customSection");
     const starterSection = document.querySelector('#starterSection');
-    const allCustomSliders = document.querySelectorAll('#customSection .displayDiv input');
+    const allCustomSliders = document.querySelectorAll('#customSection .displayDiv .sliderInput');
+    const allCustomNumInput = document.querySelectorAll('#customSection .displayDiv .numberInput');
     const customCheckBox = document.querySelector('#confirmBox');
 
     document.querySelectorAll('#starterSection .difficultyBtn').forEach(el => {
@@ -41,6 +42,8 @@ const main = () => {
         if (selectedDifficulty !== null) {
             startGame(selectedDifficulty);
             document.querySelector('#gameSection').classList.toggle('hidden');
+            allCustomSliders.forEach(btn => btn.disabled = false);
+            customSection.classList.add('hidden');
 
             // Reset the starterSection
             starterSection.classList.toggle('hidden');
@@ -57,22 +60,28 @@ const main = () => {
     });
 
     // Custom Section Functionalty
-    allCustomSliders.forEach(inputField => {
-        const outputField = document.querySelector(`#customSection output[for=${inputField.name}]`);
-        inputField.addEventListener('input', e => {
-            outputField.textContent = e.target.value;
+    for (let i = 0; i < allCustomNumInput.length; i++) {
+        const numField = document.querySelector(`#customSection .numberInput[name=${allCustomSliders[i].name}]`);
+        allCustomSliders[i].addEventListener('input', e => {
+            numField.value = e.target.value;
         });
-    });
+        const sliderField = document.querySelector(`#customSection .sliderInput[name=${allCustomNumInput[i].name}]`);
+        allCustomNumInput[i].addEventListener('input', e => {
+            sliderField.value = e.target.value;
+        });
+    }
     customCheckBox.addEventListener('change', e => {
         if (e.target.checked) {
-            allCustomSliders.forEach(inputField => {
-                inputField.disabled = true;
-            });
+            for (let i = 0; i < allCustomNumInput.length; i++) {
+                allCustomNumInput[i].disabled = true;
+                allCustomSliders[i].disabled = true;
+            }
             playButton.disabled = false;
         } else {
-            allCustomSliders.forEach(inputField => {
-                inputField.disabled = false;
-            });
+            for (let i = 0; i < allCustomNumInput.length; i++) {
+                allCustomNumInput[i].disabled = false;
+                allCustomSliders[i].disabled = false;
+            }
             playButton.disabled = true;
         }
     });

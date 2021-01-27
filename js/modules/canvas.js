@@ -102,6 +102,7 @@ const configCustomData = () => {
     const n_rows = document.querySelector('#customSection input[name=height]').value;
     const n_flags = document.querySelector('#customSection input[name=flags]').value;
     const mineMultiplier = document.querySelector('#customSection input[name=mines]').value;
+    const minimumMines = document.querySelector('#customSection input[name=minMines]').value;
 
     return {
         "id": 4,
@@ -113,7 +114,7 @@ const configCustomData = () => {
         "canvasWidth": (Number(n_columns) * 50),
         "canvasHeight": (Number(n_rows) * 50),
         "flags": Number(n_flags),
-        "mineMultiplier": Number(mineMultiplier),
+        "mineMultiplier": Number(mineMultiplier) / 10,
         "minimumMines": 0
     }
 }
