@@ -46,6 +46,11 @@ class Grid {
         let set = new Set();
 
         for (let i = 0; i < cycles; i++) {
+            // Custom infinite loop prevention.
+            if ((this.n_mines > this.width * this.height)) {
+                break;
+            }
+
             let x = Math.floor(Math.random() * max_x);
             let y = Math.floor(Math.random() * max_y);
 

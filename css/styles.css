@@ -2,8 +2,6 @@ main {
     display: flex;
     justify-content: center;
     text-align: center;
-    flex-direction: column;
-    flex-wrap: wrap;
     margin-top: 5%;
 }
 
@@ -32,3 +30,18 @@ canvas {
     display: flex;
     justify-content: center;
 }
+
+#customSection {
+    margin: 50px;
+}
+
+#customSection .displayDiv {
+    margin: 10px;
+}
+
+#customSection label,
+#customSection output {
+    font-size: large;
+    font-weight: bold;
+}
+

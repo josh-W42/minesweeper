@@ -40,16 +40,7 @@
             "minimumMines": 25
         },
         {
-            "id": 4,
-            "name": "CUSTOM",
-            "blocksPerRow": "TODO",
-            "blocksPerColumn": "TODO",
-            "blockWidth": "TODO",
-            "blockHeight": "TODO",
-            "canvasWidth": "TODO",
-            "canvasHeight": "TODO",
-            "flags": "TODO",
-            "mineMultiplier": "TODO"
+            "id": 4
         }
     ]
 }

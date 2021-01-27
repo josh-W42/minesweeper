@@ -23,7 +23,12 @@ let ctx = null;
  */
 const setupCanvas = id => {
     let canvas = document.querySelector('#canvas');
-    const difficulty = data.difficulty.filter(difficulty => difficulty.id === id)[0]; // Expecting one id.
+    let difficulty = data.difficulty.filter(difficulty => difficulty.id === id)[0]; // Expecting one id.
+
+    // Custom Config
+    if (difficulty.id === 4) {
+        difficulty = configCustomData();
+    }
 
     canvas.width = difficulty.canvasWidth;
     canvas.height = difficulty.canvasHeight;
@@ -53,7 +58,7 @@ const setupCanvas = id => {
             }
         }
 
-        // Add evnets to register clicks on the canvas.
+        // Add events to register clicks on the canvas.
         canvas.addEventListener('click', canvasClickCallback);
         canvas.addEventListener('contextmenu', canvasClickCallback);
     }
@@ -89,6 +94,27 @@ const canvasClickCallback = e => {
             }
             box.draw(ctx);
         }
+    }
+}
+
+const configCustomData = () => {
+    const n_columns = document.querySelector('#customSection input[name=width]').value;
+    const n_rows = document.querySelector('#customSection input[name=height]').value;
+    const n_flags = document.querySelector('#customSection input[name=flags]').value;
+    const mineMultiplier = document.querySelector('#customSection input[name=mines]').value;
+
+    return {
+        "id": 4,
+        "name": "CUSTOM",
+        "blocksPerRow": Number(n_columns),
+        "blocksPerColumn": Number(n_rows),
+        "blockWidth": 50,
+        "blockHeight": 50,
+        "canvasWidth": (Number(n_columns) * 50),
+        "canvasHeight": (Number(n_rows) * 50),
+        "flags": Number(n_flags),
+        "mineMultiplier": Number(mineMultiplier),
+        "minimumMines": 0
     }
 }
 

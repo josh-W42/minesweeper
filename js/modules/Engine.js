@@ -13,7 +13,6 @@ let difficultyId = null;
  */
 const startGame = id => {
     difficultyId = id;
-    document.querySelector('#gameSection').classList.toggle('hidden');
     intervalId = startTimer();
     console.log(window.localStorage);
     setupCanvas(id);

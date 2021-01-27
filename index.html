@@ -15,9 +15,40 @@
             <button class='difficultyBtn' data-difficulty="1">Easy</button>
             <button class='difficultyBtn' data-difficulty="2">Medium</button>
             <button class='difficultyBtn' data-difficulty="3">Hard</button>
-            <!-- <button data-difficulty="4">Custom</button> Later for more complexity -->
+            <button class='difficultyBtn' data-difficulty="4">Custom</button>
             <br/><br/>
             <button class='playBtn' disabled>Play</button>
+        </section>
+        <section id='customSection' class="hidden">
+            <form>
+                <div class='row'>
+                    <div class="displayDiv">
+                        <label for="width">Width</label>
+                        <input name="width" type="range" max="50" min="1" step="1" value="1" />
+                        <output class="rangeOutput" for="width">1</output>
+                    </div>
+                    <div class="displayDiv">
+                        <label for="height">Height</label>
+                        <input name="height" type="range" max="50" min="1" step="1" value="1" />
+                        <output class="rangeOutput" for="height">1</output>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class="displayDiv">
+                        <label for="mines">Mine Multiplier</label>
+                        <input name="mines" type="range" max="10" min="1" step="1" value="0" />
+                        <output class="rangeOutput" for="mines">1</output>
+                    </div>
+                    <div class="displayDiv">
+                        <label for="flags">Flags</label>
+                        <input name="flags" type="range" max="100" min="0" step="1" value="0" />
+                        <output class="rangeOutput" for="flags">1</output>
+                    </div>
+                </div>
+                <br/>
+                <label for="confirm">Confirm Selection:</label>
+                <input id="confirmBox" type="checkbox" name="confirm" />
+            </form>
         </section>
         <section id='gameSection' class="hidden">
             <div id='hud'>
