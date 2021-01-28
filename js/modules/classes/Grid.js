@@ -179,7 +179,11 @@ class Grid {
             }
         }
     }
-
+    /**
+     * Assigns animation properties to the grid. They must be adjusted from the difficulty profile to be much faster.
+     * @param {Number} variation - The animation's variation number from the difficulty profile.
+     * @param {Number} speed - The animation's speed from the difficulty profile.
+     */
     configAnimations(variation, speed) {
         this.animationVariation = Math.ceil(variation / 50);
         this.animationSpeedModifier = Math.ceil(speed / 100);

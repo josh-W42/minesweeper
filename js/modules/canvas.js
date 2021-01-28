@@ -25,7 +25,7 @@ const setupCanvas = id => {
     let canvas = document.querySelector('#canvas');
     let difficulty = data.difficulty.filter(difficulty => difficulty.id === id)[0]; // Expecting one id.
 
-    // Custom Config
+    // Custom difficulties get their profile from user input.
     if (difficulty.id === 4) {
         difficulty = configCustomData();
     }
