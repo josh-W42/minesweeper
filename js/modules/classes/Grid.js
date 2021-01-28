@@ -6,7 +6,7 @@ class Grid {
      * @param {Number} width - The width of the grid.
      * @param {Number} height - The height of the grid.
      */
-    constructor(width, height, context, flags) {
+    constructor(width, height, context) {
         this.width = width;
         this.height = height;
         this.array = this.makeGrid();
@@ -42,28 +42,31 @@ class Grid {
         multiplier = multiplier > 1.0 ? 1.0 : multiplier;
         multiplier = multiplier < 0 ? 0 : multiplier;
 
-        // Just in case the user wants to be funny.
-        min_values = min_values > (this.width * this.height) ? (this.width * this.height) : min_values;
+        let n_values = Math.floor(Math.random() * (max_x + max_y)) + min_values;
+        let cycles = n_values + Math.floor(n_values * multiplier);
 
-        const n_values = Math.floor(Math.random() * (max_x + max_y)) + min_values;
-        const cycles = n_values + Math.floor(n_values * multiplier);
+        // Just in case the user wants to be funny.
+        if (min_values > (this.width * this.height)) {
+            cycles = this.width * this.height;
+        }
 
         // Duplicate Detection
         let set = new Set();
 
         for (let i = 0; i < cycles; i++) {
-            // Custom infinite loop prevention.
-            if (isNaN(cycles)) {
-                break;
-                alert("The input provided has triggered an error, please refresh the page.");
-            }
-
+            
             let x = Math.floor(Math.random() * max_x);
             let y = Math.floor(Math.random() * max_y);
-
+            
+            // Custom infinite loop prevention.
+            let count = 0;
             while (set.has(`${x}${y}`)) {
+                if (count > (2500)) { // Max Grid size
+                    break;
+                }
                 x = Math.floor(Math.random() * max_x);
                 y = Math.floor(Math.random() * max_y);
+                count++;
             }
             set.add(`${x}${y}`);
 
