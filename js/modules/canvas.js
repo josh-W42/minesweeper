@@ -46,7 +46,7 @@ const setupCanvas = id => {
         const rectW = difficulty.blockWidth;
         const rectH = difficulty.blockHeight;
         
-        grid = new Grid(n_row, n_column, ctx, difficulty.flags);
+        grid = new Grid(n_row, n_column, ctx);
         grid.configAnimations(animationVar, animationSpeed);
         grid.fillRandomCordinates(difficulty.minimumMines, difficulty.mineMultiplier);
         
@@ -64,9 +64,13 @@ const setupCanvas = id => {
             }
         }
 
-        // Add events to register clicks on the canvas.
-        canvas.addEventListener('click', canvasClickCallback);
-        canvas.addEventListener('contextmenu', canvasClickCallback);
+        // Give the canvas time to run animations.
+        setTimeout(() => {
+            // Add events to register clicks on the canvas.
+            canvas.addEventListener('click', canvasClickCallback);
+            canvas.addEventListener('contextmenu', canvasClickCallback);
+
+        }, 1000);
     }
 }
 

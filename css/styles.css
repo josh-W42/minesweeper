@@ -74,6 +74,10 @@ main {
     animation-duration: 1s;
 }
 
+#gameSection {
+    width: auto;
+}
+
 button {
     border: none;
     font-size: large;
@@ -107,10 +111,10 @@ canvas {
 #customSection .displayDiv {
     margin: 10px 5px;
     width: 50%;
-    justify-content: center;
     display: inline-flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
 }
 
 #customSection input {
@@ -148,6 +152,10 @@ canvas {
     #customSection {
         width: 75%;
         margin: auto;
+    }
+
+    #gameSection {
+        width: auto;
     }
 
     #warningSection {
@@ -203,11 +211,13 @@ canvas {
 
     #customSection .displayDiv {
         width: 50%;
-        display: inline;
+        margin-left: 5px;
+        margin-right: 5px;
+        display: inline-block;
     }
     
     #customSection input {
         margin: 10px;
-        width: auto;
+        width: 75px;
     }
 }
