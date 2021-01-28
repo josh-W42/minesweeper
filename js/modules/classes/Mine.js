@@ -19,8 +19,16 @@ class Mine extends Box {
      * @param {Object} context - The context of the canvas.
      */
     reveal = function(context = undefined) {
-        context.fillStyle = 'red';
-        context.fillRect(this.x + 1, this.y + 1, this.width - 2, this.height - 2);        
+        let alpha = this.animateSpeed <= 1 ? 1 : 0;
+        let id = setInterval(() => {
+            if (alpha <= 1) {
+                // context.fillRect(this.x + 1, this.y + 1, this.width - 2, this.height - 2);
+                context.drawImage(document.querySelector('#explosionimg'), this.x + 5, this.y + 5, (this.width / 1.25), (this.height / 1.25));
+                alpha += 0.2;
+            } else {
+                clearInterval(id);
+            }
+        }, this.animateSpeed);
     }
 }
 
