@@ -2,6 +2,15 @@
     Designed With Mobile First Approach,
     Check bottom for Tablet and Desktop CSS.
 */
+@keyframes slideOut {
+    from {
+        margin-left: -1000px;
+    }
+    to {
+        margin-left: 50%;
+    }
+}
+
 html, body {
     height: 100%;
 }
@@ -13,6 +22,7 @@ html, body {
 body {
     background-image: url("../assets/nathan-anderson-L95xDkSSuWw-unsplash.jpg");
     background-position: center;
+    background-repeat: repeat-y;
 }
 
 .hidden {
@@ -45,9 +55,12 @@ main {
 #customSection {
     color: white;
     backdrop-filter: blur(10px) saturate(100%);
-    border: 1px solid white;
+    border-radius: 10px;
     width: 100%;
     padding: 5%;
+    /* transition: 0.5s; */
+    /* animation-name: slideOut; */
+    /* animation-duration: 1s; */
 }
 
 button {
@@ -57,8 +70,15 @@ button {
     width: 150px;
     height: 50px;
     margin: 5px;
+    transition: 0.5s;
 }
 
+button:hover:not(:disabled) {
+    background: transparent;
+    cursor: pointer;
+    color: white;
+    box-shadow: 0px 0px 5px white;
+}
 
 canvas {
     border: 1px solid black;
@@ -121,7 +141,6 @@ canvas {
 
     body {
         background-size: auto;
-        background-repeat: no-repeat;
     }
 
     #customSection .displayDiv {
@@ -149,10 +168,13 @@ canvas {
         padding: 2vh;
     }
 
+    #gameSection {
+        width: auto;
+    }
+
     body {
         background-position: center;
         background-size: cover;
-
     }
 
     #customSection #confirmBox {

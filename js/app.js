@@ -42,7 +42,10 @@ const main = () => {
         if (selectedDifficulty !== null) {
             startGame(selectedDifficulty);
             document.querySelector('#gameSection').classList.toggle('hidden');
-            allCustomSliders.forEach(btn => btn.disabled = false);
+            for (let i = 0; i < allCustomNumInput.length; i++) {
+                allCustomNumInput[i].disabled = false;
+                allCustomSliders[i].disabled = false;
+            }
             customSection.classList.add('hidden');
 
             // Reset the starterSection
