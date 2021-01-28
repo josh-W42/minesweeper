@@ -2,9 +2,8 @@
     The Engine holds game data and the logic
     that starts and stops the game.
 */
-import { setupCanvas, canvasClickCallback } from "./canvas.js";
+import { setupCanvas, canvasClickCallback, timerID } from "./canvas.js";
 
-let intervalId = null;
 let difficultyId = null;
 
 /**
@@ -13,7 +12,6 @@ let difficultyId = null;
  */
 const startGame = id => {
     difficultyId = id;
-    intervalId = startTimer();
     setupCanvas(id);
 }
 
@@ -23,7 +21,7 @@ const startGame = id => {
  */
 const endGame = hasWonGame => {
     // Stop the timer.
-    clearInterval(intervalId);
+    clearInterval(timerID);
 
     // Get Time information. Display if win.
     configEndDisplay(hasWonGame);
@@ -73,7 +71,7 @@ const getBestTime = () => {
 
 /**
  * Sets up the end of the game window after the player has won or lost.
- * @param {*} didWin - True if the player did win the game, False if otherwise.
+ * @param {Boolean} didWin - True if the player did win the game, False if otherwise.
  */
 const configEndDisplay = didWin => {
     let gameTimer = document.querySelector('#gameSection .timeDisplay');
@@ -94,4 +92,4 @@ const configEndDisplay = didWin => {
     gameTimer.textContent = '0:0:0';
 }
 
-export { startGame, endGame };
+export { startGame, endGame, startTimer };

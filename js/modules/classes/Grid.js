@@ -15,6 +15,8 @@ class Grid {
         this.revealedBoxes = new Set();
         this.context = context;
         this.hasGameEnded = false;
+        this.animationVariation = 1;
+        this.animationSpeedModifier = 1;
     }
 
     /**
@@ -135,14 +137,18 @@ class Grid {
                     surroundingMines++;
                 }
             }
-                
+            
             if (surroundingMines > 0) {
                 // Don't call cascading open on other boxes.
                 // Reveal just the number of mines.
                 this.array[i][j].surroundingMines = surroundingMines;
-                this.array[i][j].open(this.context);
+                setTimeout(() => {
+                    this.array[i][j].open(this.context);
+                }, Math.floor(Math.random() * this.animationVariation) * this.animationSpeedModifier);
             } else {
-                this.array[i][j].open(this.context);
+                setTimeout(() => {
+                    this.array[i][j].open(this.context);
+                }, Math.floor(Math.random() * this.animationVariation) * this.animationSpeedModifier);
                 // Call cascadingOpen on other surrounding boxes.
                 for (let position of nextPositions) {
                     this.cascadingOpen(position.x, position.y);
@@ -172,6 +178,11 @@ class Grid {
                 }
             }
         }
+    }
+
+    configAnimations(variation, speed) {
+        this.animationVariation = Math.ceil(variation / 50);
+        this.animationSpeedModifier = Math.ceil(speed / 100);
     }
 }
 

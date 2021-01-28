@@ -2,8 +2,8 @@ import { Box } from "./Box.js";
 import { endGame } from '../Engine.js';
 
 class Mine extends Box {
-    constructor(x, y, width, height) {
-        super(x, y, width, height);
+    constructor(x, y, width, height, animationSpeed) {
+        super(x, y, width, height, animationSpeed);
         this.isMine = true;
     }
     /**

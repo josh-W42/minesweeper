@@ -2,12 +2,21 @@
     Designed With Mobile First Approach,
     Check bottom for Tablet and Desktop CSS.
 */
-@keyframes slideOut {
+@keyframes phaseIn {
     from {
-        margin-left: -1000px;
+        opacity: 0;
     }
     to {
-        margin-left: 50%;
+        opacity: 1;
+    }
+}
+
+@keyframes phaseOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
     }
 }
 
@@ -30,7 +39,10 @@ body {
 }
 
 .active {
-    border: 5px solid black;
+    background: transparent;
+    cursor: pointer;
+    color: white;
+    box-shadow: 0px 0px 5px white;
 }
 
 .row {
@@ -54,13 +66,12 @@ main {
 #gameOverSection,
 #customSection {
     color: white;
-    backdrop-filter: blur(10px) saturate(100%);
+    backdrop-filter: blur(5px);
     border-radius: 10px;
     width: 100%;
     padding: 5%;
-    /* transition: 0.5s; */
-    /* animation-name: slideOut; */
-    /* animation-duration: 1s; */
+    animation-name: phaseIn;
+    animation-duration: 1s;
 }
 
 button {
@@ -113,9 +124,13 @@ canvas {
     font-weight: bold;
 }
 
-#customSection #confirmBox {
+#customSection .checkBoxes {
     width: 20px;
     height: 20px;
+}
+
+#customSection .checkBoxes:checked {
+    background-color: white;
 }
 
 /* For Tablets */
@@ -151,7 +166,7 @@ canvas {
         width: 75%;
     }
 
-    #customSection #confirmBox {
+    #customSection .checkBoxes {
         width: 20px;
         height: 20px;
     }
@@ -177,9 +192,9 @@ canvas {
         background-size: cover;
     }
 
-    #customSection #confirmBox {
-        width: 20px;
-        height: 20px;
+    #customSection .checkBoxes {
+        width: 30px;
+        height: 30px;
     }
 
     #customSection {
@@ -195,5 +210,4 @@ canvas {
         margin: 10px;
         width: auto;
     }
-
 }

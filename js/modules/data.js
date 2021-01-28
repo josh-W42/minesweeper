@@ -11,7 +11,9 @@ export const difficultyData = {
             "canvasHeight": 500,
             "flags": 20,
             "mineMultiplier": 0.0,
-            "minimumMines": 3
+            "minimumMines": 3,
+            "animationVariation": 1000,
+            "animationSpeedModifier": 1000
         },
         {
             "id": 2,
@@ -24,7 +26,9 @@ export const difficultyData = {
             "canvasHeight": 600,
             "flags": 50,
             "mineMultiplier": 0.3,
-            "minimumMines": 10
+            "minimumMines": 10,
+            "animationVariation": 900,
+            "animationSpeedModifier": 800,
         },
         {
             "id": 3,
@@ -37,7 +41,9 @@ export const difficultyData = {
             "canvasHeight": 750,
             "flags": 80,
             "mineMultiplier": 0.6,
-            "minimumMines": 25
+            "minimumMines": 25,
+            "animationVariation": 800,
+            "animationSpeedModifier": 700,
         },
         {
             "id": 4

@@ -27,7 +27,7 @@ const main = () => {
             // If player selects custom, the play button must remain disabled.
             if (selectedDifficulty === 4) {
                 playButton.disabled = true;
-                customSection.classList.toggle('hidden');
+                customSection.classList.remove('hidden');
             } else {
                 customSection.classList.add('hidden');
 
