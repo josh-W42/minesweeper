@@ -1,14 +1,18 @@
-main {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    margin-top: 5%;
-    width: 100%;
+/* 
+    Designed With Mobile First Approach,
+    Check bottom for Tablet and Desktop CSS.
+*/
+html, body {
+    height: 100%;
 }
 
-main {
-    overflow: scroll;
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("../assets/nathan-anderson-L95xDkSSuWw-unsplash.jpg");
+    background-position: center;
 }
 
 .hidden {
@@ -19,13 +23,45 @@ main {
     border: 5px solid black;
 }
 
-canvas {
-    border: 1px solid black;
-}
-
 .row {
     display: flex;
     justify-content: center;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 5%;
+    width: 100%;
+    overflow: scroll;
+    font-size: x-large;
+}
+
+#starterSection,
+#gameSection,
+#gameOverSection,
+#customSection {
+    color: white;
+    backdrop-filter: blur(10px) saturate(100%);
+    border: 1px solid white;
+    width: 100%;
+    padding: 5%;
+}
+
+button {
+    border: none;
+    font-size: large;
+    padding: 5px;
+    width: 150px;
+    height: 50px;
+    margin: 5px;
+}
+
+
+canvas {
+    border: 1px solid black;
 }
 
 .displayDiv {
@@ -37,16 +73,105 @@ canvas {
     justify-content: center;
 }
 
-#customSection {
-    margin: 50px;
+#customSection .displayDiv {
+    margin: 10px 5px;
+    width: 50%;
+    justify-content: center;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-#customSection .displayDiv {
-    margin: 10px;
+#customSection input {
+    width: 100%;
+    text-align: center;
 }
 
 #customSection label,
-#customSection output {
-    font-size: large;
+#customSection input {
+    font-size: x-large;
     font-weight: bold;
+}
+
+#customSection #confirmBox {
+    width: 20px;
+    height: 20px;
+}
+
+/* For Tablets */
+@media screen and (min-width: 700px) {
+
+    button {
+        border: none;
+        font-size: x-large;
+        width: 175px;
+    }
+
+    #starterSection,
+    #gameSection,
+    #gameOverSection,
+    #customSection {
+        width: 75%;
+        margin: auto;
+    }
+
+    #warningSection {
+        display: none;
+    }
+
+    body {
+        background-size: auto;
+        background-repeat: no-repeat;
+    }
+
+    #customSection .displayDiv {
+        display: inline-block;
+    }
+    
+    #customSection input {
+        width: 75%;
+    }
+
+    #customSection #confirmBox {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* For Desktops */
+@media screen and (min-width: 1100px) {
+    #starterSection,
+    #gameSection,
+    #gameOverSection,
+    #customSection {
+        width: 45%;
+        margin: auto;
+        padding: 2vh;
+    }
+
+    body {
+        background-position: center;
+        background-size: cover;
+
+    }
+
+    #customSection #confirmBox {
+        width: 20px;
+        height: 20px;
+    }
+
+    #customSection {
+        margin: auto;
+    }
+
+    #customSection .displayDiv {
+        width: 50%;
+        display: inline;
+    }
+    
+    #customSection input {
+        margin: 10px;
+        width: auto;
+    }
+
 }

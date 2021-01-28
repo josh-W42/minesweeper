@@ -56,7 +56,11 @@ screen captures of your app -->
 
 ---
 ### Credits
-Flag icon made by [Smashicon](https://www.flaticon.com/authors/smashicons") from [flaticon.com](https://www.flaticon.com/).
+- Flag icon made by [Smashicon](https://www.flaticon.com/authors/smashicons") from [flaticon.com](https://www.flaticon.com/).
+- Bomb icon made by [Freepik](https://www.freepik.com) from [flaticon.com](https://www.flaticon.com/).
+- Background photo taken by [Nathan Anderson](https://unsplash.com/@nathananderson?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText") on [Unsplash](https://unsplash.com/s/photos/night?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText)
+
+
 
 ---
 

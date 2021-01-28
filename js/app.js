@@ -87,7 +87,6 @@ const main = () => {
             playButton.disabled = true;
         }
     });
-
 }
 
 main();

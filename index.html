@@ -4,6 +4,19 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Minesweeper</title>
+    <!-- Key meta tags -->
+    <meta name="description" content="A minesweeper clone developed by Joshua Wilson">
+    <meta name="keywords" content="HTML, CSS, JavaScript, minesweeper">
+    <meta name="author" content="Joshua Wilson">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon_package_v0.16/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon_package_v0.16/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon_package_v0.16/favicon-16x16.png">
+    <link rel="manifest" href="./assets/favicon_package_v0.16/site.webmanifest">
+    <link rel="mask-icon" href="./assets/favicon_package_v0.16/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <!-- CSS and JS -->
     <link href="./css/styles.css" rel="stylesheet" type='text/css' />
     <script src='./js/app.js' type='module'></script>
 </head>
@@ -18,8 +31,10 @@
             <button class='difficultyBtn' data-difficulty="4">Custom</button>
             <br/><br/>
             <button class='playBtn' disabled>Play</button>
+            <h5 id="warningSection">For the best view on mobile, please view the site in desktop mode.</h5>
         </section>
         <section id='customSection' class="hidden">
+            <h2>Select Settings</h2>
             <form>
                 <div class='row'>
                     <div class="displayDiv">
