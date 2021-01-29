@@ -23,7 +23,7 @@ class Mine extends Box {
         let id = setInterval(() => {
             if (alpha <= 1) {
                 context.drawImage(document.querySelector('#explosionimg'), this.x + 5, this.y + 5, (this.width / 1.25), (this.height / 1.25));
-                alpha += 0.1;
+                alpha += 0.2;
             } else {
                 clearInterval(id);
             }

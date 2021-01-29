@@ -44,7 +44,7 @@ class Box {
                 if (this.isFlagged) {
                     context.drawImage(document.querySelector('#flagimg'), this.x + 5, this.y + 5, (this.width / 1.25), (this.height / 1.25));
                 }
-                alpha += 0.1;
+                alpha += 0.2;
             } else {
                 clearInterval(id);
             }
@@ -72,7 +72,7 @@ class Box {
                     const adjustedY = this.y + Math.floor(this.height / 1.25);
                     context.fillText(`${this.surroundingMines}`, adjustedX, adjustedY, this.width);
                 }
-                alpha += 0.1;
+                alpha += 0.2;
             } else {
                 clearInterval(id);
             }
