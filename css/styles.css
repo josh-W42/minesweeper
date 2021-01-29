@@ -41,7 +41,7 @@ body {
 .active {
     background: transparent;
     cursor: pointer;
-    color: white;
+    color: #F8F9FA;
     box-shadow: 0px 0px 5px white;
 }
 
@@ -65,7 +65,7 @@ main {
 #gameSection,
 #gameOverSection,
 #customSection {
-    color: white;
+    color: #F8F9FA;
     backdrop-filter: blur(5px);
     border-radius: 10px;
     width: 100%;
@@ -91,7 +91,7 @@ button {
 button:hover:not(:disabled) {
     background: transparent;
     cursor: pointer;
-    color: white;
+    color: #F8F9FA;
     box-shadow: 0px 0px 5px white;
 }
 
@@ -106,6 +106,7 @@ canvas {
 #hud {
     display: flex;
     justify-content: center;
+    background: #3d5a80;
 }
 
 #customSection .displayDiv {
@@ -134,7 +135,7 @@ canvas {
 }
 
 #customSection .checkBoxes:checked {
-    background-color: white;
+    background-color: #F8F9FA;
 }
 
 /* For Tablets */
@@ -186,9 +187,18 @@ canvas {
     #gameSection,
     #gameOverSection,
     #customSection {
-        width: 45%;
+        width: 75%;
         margin: auto;
         padding: 2vh;
+    }
+
+    button {
+        border: none;
+        font-size: large;
+        padding: 1px;
+        width: 100px;
+        height: 50px;
+        /* margin: 5px; */
     }
 
     #gameSection {

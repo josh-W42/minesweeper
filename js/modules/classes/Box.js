@@ -27,23 +27,24 @@ class Box {
      * Draw the rectangle onto the canvas.
      * @param {Object} context - Often refered to as ctx for canvas.
      */
-    draw = function(context) {
+    draw = function(context, canvasWidth, canvasHeight) {
+
         let alpha = this.animateSpeed <= 1 ? 1 : 0;
         let id = setInterval(() => {
             if (alpha <= 1) {
                 // This will be the border
                 context.globalAlpha = alpha;
-                context.fillStyle = 'black';
-                context.fillRect(this.x, this.y, this.width, this.height);
+                context.strokeStyle = '#3d5a80';
+                context.strokeRect(this.x, this.y, this.width, this.height);
         
                 // This will be the the actual rectangle.
-                context.fillStyle = "white";
+                context.fillStyle = "#7D9AAF";
                 context.fillRect(this.x + 1, this.y + 1, this.width - 2, this.height - 2);
         
                 if (this.isFlagged) {
                     context.drawImage(document.querySelector('#flagimg'), this.x + 5, this.y + 5, (this.width / 1.25), (this.height / 1.25));
                 }
-                alpha += 0.2;
+                alpha += 0.1;
             } else {
                 clearInterval(id);
             }
@@ -60,18 +61,18 @@ class Box {
             if (alpha <= 1) {
                 this.hasOpened = true;
                 context.globalAlpha = alpha;
-                context.fillStyle = 'grey';
+                context.fillStyle = '#012A4A';
                 context.fillRect(this.x + 1, this.y + 1, this.width - 2, this.height - 2);
         
                 // Draw the number if any.
                 if (this.surroundingMines > 0) {
-                    context.fillStyle = 'white';
+                    context.fillStyle = '#98c1d9';
                     context.font = '48px serif';
                     const adjustedX = this.x + Math.floor(this.width / 4);
                     const adjustedY = this.y + Math.floor(this.height / 1.25);
                     context.fillText(`${this.surroundingMines}`, adjustedX, adjustedY, this.width);
                 }
-                alpha += 0.2;
+                alpha += 0.1;
             } else {
                 clearInterval(id);
             }

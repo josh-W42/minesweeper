@@ -59,7 +59,7 @@ const setupCanvas = id => {
                     grid.array[j][i] = new Box(rectW * j, rectH * i, rectW, rectH, animationSpeed);
                 }
                 setTimeout(() => {
-                    grid.array[j][i].draw(ctx);
+                    grid.array[j][i].draw(ctx, difficulty.canvasWidth, difficulty.canvasHeight);
                 }, Math.floor(Math.random() * animationVar)) * animationSpeed;
             }
         }
@@ -69,7 +69,6 @@ const setupCanvas = id => {
             // Add events to register clicks on the canvas.
             canvas.addEventListener('click', canvasClickCallback);
             canvas.addEventListener('contextmenu', canvasClickCallback);
-
         }, 1000);
     }
 }
