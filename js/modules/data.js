@@ -12,8 +12,8 @@ export const difficultyData = {
             "flags": 20,
             "mineMultiplier": 0.0,
             "minimumMines": 3,
-            "animationVariation": 1000,
-            "animationSpeedModifier": 1000
+            "animationVariation": 700,
+            "animationSpeedModifier": 700
         },
         {
             "id": 2,
@@ -27,8 +27,8 @@ export const difficultyData = {
             "flags": 30,
             "mineMultiplier": 0.3,
             "minimumMines": 5,
-            "animationVariation": 900,
-            "animationSpeedModifier": 800,
+            "animationVariation": 600,
+            "animationSpeedModifier": 550,
         },
         {
             "id": 3,
@@ -42,8 +42,8 @@ export const difficultyData = {
             "flags": 60,
             "mineMultiplier": 0.6,
             "minimumMines": 15,
-            "animationVariation": 800,
-            "animationSpeedModifier": 700,
+            "animationVariation": 500,
+            "animationSpeedModifier": 400,
         },
         {
             "id": 4
