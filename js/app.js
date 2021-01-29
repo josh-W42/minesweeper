@@ -11,6 +11,7 @@ const main = () => {
     const allCustomSliders = document.querySelectorAll('#customSection .displayDiv .sliderInput');
     const allCustomNumInput = document.querySelectorAll('#customSection .displayDiv .numberInput');
     const customCheckBox = document.querySelector('#confirmBox');
+    const animationBox = document.querySelector('.checkBoxes[name=animation]');
 
     document.querySelectorAll('#starterSection .difficultyBtn').forEach(el => {
         el.addEventListener('click', e => {
@@ -42,6 +43,7 @@ const main = () => {
         if (selectedDifficulty !== null) {
             startGame(selectedDifficulty);
             document.querySelector('#gameSection').classList.toggle('hidden');
+            animationBox.disabled = false;
             for (let i = 0; i < allCustomNumInput.length; i++) {
                 allCustomNumInput[i].disabled = false;
                 allCustomSliders[i].disabled = false;
@@ -77,12 +79,14 @@ const main = () => {
     }
     customCheckBox.addEventListener('change', e => {
         if (e.target.checked) {
+            animationBox.disabled = true;
             for (let i = 0; i < allCustomNumInput.length; i++) {
                 allCustomNumInput[i].disabled = true;
                 allCustomSliders[i].disabled = true;
             }
             playButton.disabled = false;
         } else {
+            animationBox.disabled = false;
             for (let i = 0; i < allCustomNumInput.length; i++) {
                 allCustomNumInput[i].disabled = false;
                 allCustomSliders[i].disabled = false;
