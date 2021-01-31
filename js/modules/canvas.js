@@ -93,7 +93,8 @@ const canvasClickCallback = e => {
     let index_y = Math.floor((e.clientY - boundaries.top) / data.difficulty[0].blockHeight);
     
     // Left mouse button has id of 0. Other ids will map to flag usage.
-    if (e.buttons === 0) {
+    console.log(e);
+    if (e.button === 0) {
         grid.cascadingOpen(index_x, index_y);
     } else {
         // Prevent the context menu from opening.
